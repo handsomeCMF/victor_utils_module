@@ -1,0 +1,20 @@
+{
+  "name": "victor_utils_module",
+  "version": "1.0.0",
+  "description": "utils for share_api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "utils",
+    "typescript"
+  ],
+  "author": "caimf",
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "axios": "^0.20.0"
+  }
+}

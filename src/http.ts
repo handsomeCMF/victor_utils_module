@@ -24,13 +24,19 @@ instance.interceptors.response.use(function (response) {
   return error;
 });
 
+function __url__(type: string = 'get') {
+  return function(url: string, params: object) {
+    return instance[type](url, params);
+  }
+}
+
 function __body__(type: string) {
   return function(url: string, params: object) {
     return instance[type](url, params);
   }
 }
 
-export const get: Function = __body__('get');
+export const get: Function = __url__('get');
 export const post: Function = __body__('post');
 export const put: Function = __body__('put');
 export const dele: Function = __body__('delete');

@@ -12,7 +12,8 @@
   ],
   "author": "caimf",
   "devDependencies": {
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "md5": "^2.3.0"
   },
   "dependencies": {
     "axios": "^0.20.0"

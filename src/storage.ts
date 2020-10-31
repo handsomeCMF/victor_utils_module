@@ -1,41 +1,36 @@
 import { Base64 } from 'js-base64';
 import * as md5 from 'md5';
 
-interface storage {
-  key: string,
-  value: string,
-}
 
 const personKey = 'CAIMF-SHARE-';
 
-const __get__ = (callback: Function) => {
+const get = (callback: (arg: string) => void) => {
   return function (key: string) {
-    const storage_key = `${personKey}-${key.toUpperCase()}`;
-    return callback(storage_key);
-  }
+    const storageKey = `${personKey}-${key.toUpperCase()}`;
+
+    return callback(storageKey);
+  };
 };
 
-const __set__ = (callback: Function) => {
-  return function (key: string, value: object) {
-    const storage_key = `${personKey}-${key.toUpperCase()}`;
+const set = (callback: (arg1: string, arg2: string) => void) => {
+  return function (key: string, value: Record<string, unknown>) {
+    const storageKey = `${personKey}-${key.toUpperCase()}`;
     const json = JSON.stringify(value);
     const base64 = Base64.encode(json);
-    const storage_value = md5(base64);
-    return callback({
-      key: storage_key,
-      value: storage_value
-    });
-  }
+    const storageValue = md5(base64);
+
+    return callback(storageKey, storageValue);
+  };
 };
 
-const getLocalItem: Function = (key: string) => { localStorage.getItem(key); }
-const getSessionItem: Function = (key: string) => { sessionStorage.getItem(key); }
-const setLocalItem: Function = (key: string, value: string) => { localStorage.setItem(key, value); }
-const setSessionItem: Function = (key: string, value: string) => { sessionStorage.setItem(key, value); }
+const getLocalItem = (key: string) => { localStorage.getItem(key); };
+const getSessionItem = (key: string) => { sessionStorage.getItem(key); };
+const setLocalItem = (key: string, value: string) => { localStorage.setItem(key, value); };
+const setSessionItem = (key: string, value: string) => { sessionStorage.setItem(key, value); };
 
-const getLocal: Function = __get__(getLocalItem);
-const getSession: Function = __get__(getSessionItem);
-const setLocal: Function = __set__(setLocalItem);
-const setSession: Function = __set__(setSessionItem);
+const getLocal = get(getLocalItem);
+const getSession = get(getSessionItem);
+const setLocal = set(setLocalItem);
+const setSession = set(setSessionItem);
 
 export { getLocal, setLocal, getSession, setSession };

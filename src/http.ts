@@ -5,7 +5,7 @@ interface myInstance extends AxiosInstance {
 }
 
 const instance: myInstance = axios.create({
-  baseURL: '127.0.0.1',
+  baseURL: '/api',
   timeout: 1000,
 });
 

@@ -43,7 +43,7 @@ instance.defaults.headers.post['Content-Type'] = 'application/json';
 
 instance.interceptors.request.use(function (config) {
   const token = getSession(commonValues.TOKEN);
-  config.headers.Authorization = token;
+  config.headers.Authorization = token.token;
   return config;
 }, function (error) {
   return error;

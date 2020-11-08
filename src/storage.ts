@@ -4,7 +4,7 @@ const personKey = 'CAIMF-SHARE-';
 
 const get = (getStorage: (arg: string) => any) => {
   return function (key: string) {
-    const storageKey = `${personKey}-${key.toUpperCase()}`;
+    const storageKey = `${personKey}${key.toUpperCase()}`;
     const result = getStorage(storageKey) || '';
     const base64 = Base64.decode(result) || '""';
     return JSON.parse(base64);
@@ -13,7 +13,7 @@ const get = (getStorage: (arg: string) => any) => {
 
 const set = (setStorage: (arg1: string, arg2: string) => void) => {
   return function (key: string, value: Record<string, unknown>) {
-    const storageKey = `${personKey}-${key.toUpperCase()}`;
+    const storageKey = `${personKey}${key.toUpperCase()}`;
     const json = JSON.stringify(value);
     const base64 = Base64.encode(json);
 

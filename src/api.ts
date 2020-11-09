@@ -5,6 +5,7 @@ const commonApi: Record<string, unknown> = {
   },
   authorApi: {
     getList: '/author',
+    addAuthor: '/author/add',
   }
 
 };

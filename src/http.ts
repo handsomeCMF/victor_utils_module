@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { getSession } from './storage';
 import commonValues from './common';
+import { message } from 'antd';
 
 const statusCode: Record<string, string> = {
   "100": '客户必须继续发出请求',
@@ -50,8 +51,9 @@ instance.interceptors.request.use(function (config) {
 });
 
 instance.interceptors.response.use(function (response) {
-  if (response.status < 200 && response.status >= 300) {
-    return statusCode[response.status];
+  if (response.status < 200 || response.status >= 300) {
+    message.error(response.data.message);
+    return response.data;
   }
   return response.data;
 }, function (error) {

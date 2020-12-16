@@ -7,6 +7,7 @@ const commonApi: Record<string, unknown> = {
     getList: '/author',
     addAuthor: '/author/add',
     getMenuList: '/author/menuList', // 获取菜单列表
+    getUserAuthor: '/author/userAuthor',
   }
 
 };
